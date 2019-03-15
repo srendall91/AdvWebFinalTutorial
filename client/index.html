@@ -2,16 +2,57 @@
 <html>
   <head>
     <meta name="viewport" content= "initial-scale=1" />
-    <title>AdvWeb final tutorial</title>
+    <title>AdvWeb final assignment</title>
+    <link rel="stylesheet" type="text/css" href="default.css">
   </head>
   <body>
-    <div>
-      <canvas id="canvas-video" width="640" height="480"></canvas>
-      <canvas id="canvas-face" width="200" height="200"></canvas>
-      <p id="data">message</p>
-      <p id="data2">message2</p>
-    </div>
+    <header>
+      <h1>UHI MSc Web Technologies, Advanced Web Programming Exercise</h1>
+    </header>
+    <section class="leftcolumn">
+      <div class="card" align="center">
+          <canvas id="canvas-video" width="640" height="480"></canvas>
+      </div>
+    </section>
+    <section class="rightcolumn">
+      <div class='card' align="center">
+        <canvas id="canvas-face" width="150" height="150"></canvas>
+
+      </div>
+      <div class='card'>
+        <h2>Select Glasses</h2>
+        <input type="radio" name="glassesSelection" value="0" checked>Default<br>
+        <input type="radio" name="glassesSelection" value="1">Clear<br>
+        <input type="radio" name="glassesSelection" value="2">Green<br>
+        <input type="radio" name="glassesSelection" value="3">Blue<br>
+        <input type="radio" name="glassesSelection" value="4">Black<br>
+        <input type="radio" name="glassesSelection" value="5">3D<br>
+        <input type="radio" name="glassesSelection" value="6">Batman<br>
+        <input type="radio" name="glassesSelection" value="7">none<br>
+      </div>
+      <div class='card'>
+        <h2>Select Nose</h2>
+        <input type="radio" name="noseSelection" value="0" checked>Default<br>
+        <input type="radio" name="noseSelection" value="1">none<br>
+      </div>
+    </section>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/app.js"></script>
+    <script>
+      	var ch = document.getElementsByName('glassesSelection');
+
+        for (var i = ch.length; i--;) {
+            ch[i].onchange = function() {
+                setGlasses(this.value);
+            }
+        }
+        var ch = document.getElementsByName('noseSelection');
+
+        for (var i = ch.length; i--;) {
+            ch[i].onchange = function() {
+                setMoustache(this.value);
+            }
+        }
+      </script>
   </body>
 </html>

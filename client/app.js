@@ -7,11 +7,43 @@ var facecontext = facecanvas.getContext('2d');
 var facedata = document.getElementById('data');
 var eyesdata = document.getElementById('data2');
 var img = new Image();
+var glassesArray = [
+  {src:'glassesRed.png', centre:{x:250, y:140}, separation:200},
+  {src:'glassesTransparentRed.png', centre:{x:250, y:140}, separation:200},
+  {src:'glassesTransparentGreen.png', centre:{x:250, y:140}, separation:200},
+  {src:'glassesTransparentBlue.png', centre:{x:250, y:140}, separation:200},
+  {src:'glassesTransparentBlack.png', centre:{x:250, y:140}, separation:200},
+  {src:'3DGlasses.png', centre:{x:364, y:100}, separation:360},
+  {src:'LegoBatman.png', centre:{x:168, y:287}, separation:142},
+  {src:'none'}
+]
+var moustacheArray = [
+  {src:'moustache.png', centre:{x:248, y:53}},
+  {src:'none'}
+]
 var glasses = new Image();
-glasses.src = 'glasses.png';
-glasses.props = {centre:{x:250, y:140}, radius:100};
-console.log(glasses.src, glasses.props, glasses.props.centre.x);
+setGlasses(0);
+
+var moustache = new Image();
+setMoustache(0);
+
 var face = new Object();
+
+function setGlasses(item){
+  // function called by radio buttons in HTML
+  value = glassesArray[item];
+  glasses.src = 'images/'+ value.src;
+  glasses.props = {centre:value.centre,  separation:value.separation};
+  console.log(glasses.src)
+}
+
+function setMoustache(item){
+  // function called by radio buttons in HTML
+  value = moustacheArray[item];
+  moustache.src = 'images/'+ value.src;
+  moustache.props = {centre:value.centre};
+  console.log(moustache.src)
+}
 
 function drawGlasses(face, glasses){
   function midpoint(feature){
@@ -32,17 +64,16 @@ function drawGlasses(face, glasses){
             x:(eye1.x+(eye2.x-eye1.x)/2),
             y:(eye1.y+(eye2.y-eye1.y)),
           },
-          radius:((eye2.x-eye1.x)/2), // adequate for small angles
-          angle:((eye2.y-eye1.y)/(eye2.x-eye1.x)), // true for very small angles (radians)
+          separation:((eye2.x-eye1.x)), // adequate for small angles
+          angle:((eye2.y-eye1.y)/(eye2.x-eye1.x)), // true for very small angles (in radians)
         };
     };
   };
 
-  context.save(); // store default canvas mapping
-
   eyes = eyesParams(face.eyes);
-  scale = eyes.radius/glasses.props.radius;
+  scale = eyes.separation/glasses.props.separation;
 
+  context.save(); // store default canvas mapping
   context.translate(face.face.x+eyes.centre.x, face.face.y+eyes.centre.y)
   context.scale(scale,scale)
   context.rotate(eyes.angle)
@@ -50,38 +81,23 @@ function drawGlasses(face, glasses){
   context.drawImage(glasses, -glasses.props.centre.x, -glasses.props.centre.y,
      glasses.width, glasses.height)
 
-  context.restore(); // store default canvas mapping
+  context.restore(); // restore default canvas mapping
 
 };
-
-socket.on('face_detect', function(data){
-  //console.log(data);
-  face= data;
-  //context.drawImage(glasses, face.x, face.y, face.height, face.width);
-});
-
-// socket.on('face_data', function(data){
-//   facedata.innerHTML= data;
-//   console.log(data)
-// });
 
 socket.on('frame', function(data) {
   var uint8Arr = new Uint8Array(data.buffer);
   var str = String.fromCharCode.apply(null, uint8Arr);
   var base64String = btoa(str);
+  //console.log(data.faces)
   img.onload = function(){
     context.drawImage(this, 0, 0, canvas.width, canvas.height);
-    context.drawImage(glasses, face.x, face.y, face.height, face.width);
+
     if (data.faces.length == 1) {
-      if (data.faces[0].eyes.length == 2){
+      if ((data.faces[0].eyes.length == 2)&&(glasses.src != 'images/none')){
         drawGlasses(data.faces[0], glasses);
       };
     };
-    facedata.innerHTML= 'number of faces found = ' + data.faces.length;
-    if (data.faces.length>0){
-      eyesdata.innerHTML= 'number of eyes found = ' + data.faces[0].eyes.length;
-    }
-    //console.log(data.faces)
   };
   img.src = 'data:image/png;base64,' +base64String;
 });

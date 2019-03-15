@@ -4,7 +4,7 @@ var cv= require ('opencv');
 
 var camW = 640;
 var camH = 480;
-var camFps =5;
+var camFps =3;
 var camInterval = 1000/camFps;
 var EYES_CASCADE = './node_modules/opencv/data/haarcascade_eye_tree_eyeglasses.xml';
 //var EYES_CASCADE = './node_modules/opencv/data/haarcascade_eye.xml';

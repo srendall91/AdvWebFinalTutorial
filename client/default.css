@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: #303083;
+    color:darkgrey;
+    font-size 90%;
+}
+
+header {
+    background-image: linear-gradient(rgba(71, 71, 211, 0.8), rgba(48, 48, 131, 0.0));
+    color: white;
+    padding: 2%;
+}
+
+section{
+    padding: 1%;
+}
+
+
+.tagline {
+    text-align: center;
+    clear: both;
+    color:#a9fafa;
+    padding-top: 0.5em
+
+}
+
+
+/* link colouring, reactive to mouse actions: hover and visited*/
+a:link {
+    color: yellow;
+}
+
+a:visited {
+    color: lightyellow;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+/* general heading sizing and colouring*/
+h1, h2, h3, th{
+    margin-top: 0;
+    color:white;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.5em;
+    margin-top:  0.5em;
+    margin-bottom: 0.5em;
+}
+
+
+/* Two columns that float side by side */
+.leftcolumn {
+    float: left;
+    width: 700px;
+}
+
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 1%;
+}
+
+/* card container style for items within columns */
+.card {
+    background-image: linear-gradient(rgba(37, 40, 69, 0.8), rgba(2, 0, 52, 0.8));
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border: 0.1rem solid white;
+    border-radius: 1rem;
+}
+
+.card h2{
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* Wwhen the screen is less than 1000px wide,
+the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1000px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
