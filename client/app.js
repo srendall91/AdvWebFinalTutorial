@@ -26,11 +26,11 @@ var moustacheArray = [
   // additional parameters:
   //  centre - where location of midpoint of upper lip
   //  separation - reference for scaling -how far apart eyes would be on the image when placed on face
-  {src:'moustache.png', centre:{x:248, y:80}, separation:250},
-  {src:'brown.png', centre:{x:255, y:230}, separation:245},
-  {src:'magnum.png', centre:{x:110, y:74}, separation:200},
-  {src:'jacksparrow.png', centre:{x:108, y:44}, separation:125},
-  {src:'banana.png', centre:{x:138, y:50}, separation:200},
+  {src:'moustache.png', centre:{x:248, y:40}, separation:250},
+  {src:'brown.png', centre:{x:255, y:200}, separation:245},
+  {src:'magnum.png', centre:{x:110, y:34}, separation:200},
+  {src:'jacksparrow.png', centre:{x:108, y:24}, separation:125},
+  {src:'banana.png', centre:{x:138, y:20}, separation:200},
   {src:'none'}
 ]
 var glasses = new Image();
