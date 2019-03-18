@@ -9,7 +9,7 @@ var camInterval = 1000/camFps;
 var EYES_CASCADE = './node_modules/opencv/data/haarcascade_eye_tree_eyeglasses.xml';
 //var EYES_CASCADE = './node_modules/opencv/data/haarcascade_eye.xml';
 var NOSE_CASCADE = './node_modules/opencv/data/haarcascade_mcs_nose.xml';
-var facesReturn = [];
+var facesReturn = []; // array to hold detected faces
 
 //initcam
 
@@ -24,12 +24,13 @@ module.exports = function(socket){
 
 			//socket.emit('frame', { buffer: im.toBuffer()});
 			im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
-				facesReturn = [];
+				facesReturn = []; // clear array
 				for (i=0;i<faces.length; i++){
-					var facereturn = {};
+					var facereturn = {}; // object to collect all face data
 					var x = faces[i];
 					facereturn.face = x
 
+					// get region of interest for further processing
 					var face = im.roi(x.x,x.y,x.width,x.height);
 					// face.convertGrayscale();
 					// face.equalizeHist();
@@ -50,9 +51,9 @@ module.exports = function(socket){
 						// 	console.log('nose', nose);
 						// 	face.ellipse(nose.x + nose.width/2, nose.y + nose.height/2, nose.width/2, nose.height/2,[0,255,0]);
 						// };
+						// socket.emit('face', {buffer: face.toBuffer()}); // this emit has circles around nose
 					});
-					socket.emit('face', {buffer: face.toBuffer()}); // this emit does not have circled eyes
-					// socket.emit('face_detect',x);
+					socket.emit('face', {buffer: face.toBuffer(), face: facereturn}); // this emit does not have circled eyes
 					facesReturn[i] = facereturn
 				};
 

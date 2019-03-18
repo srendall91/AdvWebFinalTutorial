@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h1>UHI MSc Web Technologies, Advanced Web Programming Exercise</h1>
+      <h1>Advanced Web Programming Exercise - Glasses and Moustache</h1>
     </header>
     <section class="leftcolumn">
       <div class="card" align="center">
@@ -15,25 +15,27 @@
       </div>
     </section>
     <section class="rightcolumn">
-      <div class='card' align="center">
-        <canvas id="canvas-face" width="150" height="150"></canvas>
-
-      </div>
       <div class='card'>
         <h2>Select Glasses</h2>
         <input type="radio" name="glassesSelection" value="0" checked>Default<br>
-        <input type="radio" name="glassesSelection" value="1">Clear<br>
-        <input type="radio" name="glassesSelection" value="2">Green<br>
-        <input type="radio" name="glassesSelection" value="3">Blue<br>
-        <input type="radio" name="glassesSelection" value="4">Black<br>
-        <input type="radio" name="glassesSelection" value="5">3D<br>
-        <input type="radio" name="glassesSelection" value="6">Batman<br>
-        <input type="radio" name="glassesSelection" value="7">none<br>
+        <input type="radio" name="glassesSelection" value="1">Green<br>
+        <input type="radio" name="glassesSelection" value="2">Blue<br>
+        <input type="radio" name="glassesSelection" value="3">Black<br>
+        <input type="radio" name="glassesSelection" value="4">3D<br>
+        <input type="radio" name="glassesSelection" value="5">Batman<br>
+        <input type="radio" name="glassesSelection" value="6">none<br>
       </div>
       <div class='card'>
-        <h2>Select Nose</h2>
-        <input type="radio" name="noseSelection" value="0" checked>Default<br>
-        <input type="radio" name="noseSelection" value="1">none<br>
+        <h2>Select Moustache</h2>
+        <input type="radio" name="noseSelection" value="0">Default<br>
+        <input type="radio" name="noseSelection" value="1">Brown<br>
+        <input type="radio" name="noseSelection" value="2">Magnum<br>
+        <input type="radio" name="noseSelection" value="3">Jack Sparrow<br>
+        <input type="radio" name="noseSelection" value="4">Banana<br>
+        <input type="radio" name="noseSelection" value="5" checked>none<br>
+      </div>
+      <div class='card' align="center">
+        <canvas id="canvas-face" width="200" height="200"></canvas>
       </div>
     </section>
     <script src="/socket.io/socket.io.js"></script>
